@@ -13,30 +13,62 @@ class MyHomePage extends StatefulWidget {
 // shift + alt + f -> win
 // shift + option + f -> mac
 // ctrl + shift + I -> linux
-
-Column keyPadFun(){
-  List col = [
-    ['1', '2', '3'],
-    [ '4', '5', '6']
-    ];
-  return Column(
-    children: 
-    List.generate(col.length, (index) =>
-    _numberRow(col[index])
-    ));
-}
-
-Widget _numberRow(List<String> numbers){
-  return Row(children: List.generate(numbers.length, (index) =>
-  _buttonOfNumberBuilder(numbers[index])),);
-}
-
-Widget _buttonOfNumberBuilder(String num){
-  return ButtonOfNumber(number: num,);
-}
-
 class _MyHomePageState extends State<MyHomePage> {
 
+Column keyPadFun() {
+  List col = [
+    ['1', '2', '3'],
+    ['4', '5', '6']
+  ];
+  return Column(
+      children: List.generate(col.length, (index) => _numberRow(col[index])));
+}
+
+Widget _numberRow(List<String> numbers) {
+  return Row(
+    children: List.generate(
+        numbers.length, (index) => _buttonOfNumberBuilder(numbers[index])),
+  );
+}
+
+Widget _buttonOfNumberBuilder(String num) {
+  return ButtonOfNumber(
+    number: num,
+  );
+}
+
+  String a = '';
+  int result = 0;
+  String b = '';
+  String operator = '';
+
+  _setName() {
+    setState(() {
+      a = '2';
+    });
+  }
+
+  _setName1() {
+    setState(() {
+      b = '1';
+    });
+  }
+
+  _setOperator() {
+    setState(() {
+      operator = '+';
+    });
+  }
+
+  _setResult() {
+    setState(() {
+      if(operator == '+'){
+      result = int.parse(a) + int.parse(b);
+      }else{
+        result = int.parse(a) - int.parse(b);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,24 +81,37 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Column(
             children: [
+              Row(
+                children: [
+                  Text(a),
+                  Text(operator),
+                  Text(b),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
-                child: Text('Row1'),
+                child: Text(result.toString()),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Column'),
+                child: TextButton(onPressed: _setName1, child: Text('1')),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Column'),
+                child: TextButton(onPressed: _setName, child: Text('2')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(onPressed: _setOperator, child: Text('+')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(onPressed: _setResult, child: Text('result')),
               ),
             ],
           ),
           Column(
-            children: [
-             keyPadFun()
-            ],
+            children: [keyPadFun()],
           ),
         ],
       )),
