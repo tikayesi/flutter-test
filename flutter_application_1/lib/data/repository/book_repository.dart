@@ -3,7 +3,9 @@ import 'package:flutter_application_1/data/model/book.dart';
 import 'package:flutter_application_1/data/model/book_response.dart';
 
 class BookRepository {
-  final ApiHelper _apiHelper = ApiHelper.INSTANCE;
+  ApiHelper _apiHelper;
+
+  BookRepository(this._apiHelper);
 
   Future<Book> addProduct(Book newBook)async{
       final response = await _apiHelper.postData('/book', newBook.toMap());
