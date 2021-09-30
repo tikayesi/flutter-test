@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/counter/counter.dart';
-import 'package:flutter_application_1/my_home_page.dart';
+import 'package:flutter_application_1/to_do_detail.dart';
+import 'package:flutter_application_1/to_do_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.cyan,
         ),
-        home: MyHomePage());
+        routes: {
+          '/' : (context) => ToDoScreen()
+        },
+        );
   }
 }
 
