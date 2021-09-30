@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/to_do_detail.dart';
+import 'package:flutter_application_1/model/to_do.dart';
+import 'package:flutter_application_1/presentation/to_do_detail.dart';
+import 'package:flutter_application_1/repository/to_do_repo.dart';
 import 'package:flutter_application_1/widget/text_field_widget.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
-class ToDo {
-  int id;
-  String toDoName;
-  String toDoDesc;
-  String toDoTime;
-
-  ToDo(this.id, this.toDoName, this.toDoDesc, this.toDoTime);
-}
 
 class ToDoScreen extends StatefulWidget {
   const ToDoScreen({Key? key}) : super(key: key);
@@ -20,31 +13,11 @@ class ToDoScreen extends StatefulWidget {
 }
 
 class _ToDoScreenState extends State<ToDoScreen> {
-  List<ToDo> todos = <ToDo>[];
+  ToDoRepository _toDoRepository = ToDoRepository();
   TextEditingController toDoName = new TextEditingController();
   TextEditingController toDoDesc = new TextEditingController();
   TextEditingController toDoTime = new TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  addToDo() {
-    setState(() {
-      todos.add(new ToDo(
-          todos.length + 1, toDoName.text, toDoDesc.text, toDoTime.text));
-    });
-  }
-
-  // Widget textFormField(TextEditingController con, String hint) {
-  //   return TextFormField(
-  //       controller: con,
-  //       decoration: InputDecoration(hintText: hint),
-  //       validator: (String? value) {
-  //         if (value == null || value.isEmpty) {
-  //           return 'Please enter your to do!';
-  //         } else {
-  //           return null;
-  //         }
-  //       });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +42,35 @@ class _ToDoScreenState extends State<ToDoScreen> {
                           RequiredValidator(errorText: 'To Do is Required'),
                           MinLengthValidator(5, errorText: '5 min char')
                         ]),
-                        ),
-                      // textFormField(toDoName, 'Enter Your To Do!'),
-                      // textFormField(toDoDesc, 'Please enter your Description!'),
-                      // textFormField(toDoTime, 'Please enter your Time!'),
+                      ),
+                      TextFieldWidget(
+                        con: toDoDesc,
+                        hint: 'Enter Your To Do!',
+                        validate: MultiValidator([
+                          RequiredValidator(errorText: 'To Do is Required'),
+                          MinLengthValidator(5, errorText: '5 min char')
+                        ]),
+                      ),
+                      TextFieldWidget(
+                        con: toDoTime,
+                        hint: 'Enter Your To Do!',
+                        validate: MultiValidator([
+                          RequiredValidator(errorText: 'To Do is Required'),
+                          MinLengthValidator(5, errorText: '5 min char')
+                        ]),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                addToDo();
+                                setState(() {
+                                  _toDoRepository.addToDo(new ToDo(
+                                      _toDoRepository.getListToDo().length + 1,
+                                      toDoName.text,
+                                      toDoDesc.text,
+                                      toDoTime.text));
+                                });
                               }
                             },
                             child: const Text('Submit')),
@@ -101,12 +93,21 @@ class _ToDoScreenState extends State<ToDoScreen> {
                             Expanded(
                               child: ListTile(
                                 leading: Icon(Icons.access_alarm),
-                                title: Text(todos[index].toDoName,
+                                title: Text(
+                                    _toDoRepository
+                                        .getListToDo()[index]
+                                        .toDoName,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
-                                onTap: (){
+                                onTap: () {
                                   //Navigator.pushNamed(context, '/detail');
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ToDoDetail()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ToDoDetail(
+                                                toDo: _toDoRepository
+                                                    .getListToDo()[index],
+                                              )));
                                 },
                               ),
                             ),
@@ -122,7 +123,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                   // separatorBuilder: (context, index){
                   //   return Divider(height: 5.0, color: Colors.blue,);
                   // },
-                  itemCount: todos.length,
+                  itemCount: _toDoRepository.getListToDo().length,
                 )),
               ),
             )
