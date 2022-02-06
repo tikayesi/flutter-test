@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/api/api_helper.dart';
+import 'package:flutter_application_1/data/api/api_helper_impl.dart';
 import 'package:flutter_application_1/data/model/book.dart';
+import 'package:flutter_application_1/data/repository/book_repository.dart';
 import 'package:flutter_application_1/presentation/book/book_view_model.dart';
 
 class BookListScreen extends StatefulWidget {
-  BookViewModel bookViewModel = BookViewModel();
+  late BookViewModel _bookViewModel;
+
+  BookFormScreen(){
+    ApiHelper apiHelper = ApiHelperImpl.INSTANCE;
+    BookRepository _bookRepository = BookRepository(apiHelper);
+    _bookViewModel = BookViewModel(_bookRepository);
+  }
 
   @override
   _BookListScreenState createState() => _BookListScreenState();
@@ -20,7 +29,7 @@ class _BookListScreenState extends State<BookListScreen> {
 
 
   _getListBook() async{
-    listBook =  await widget.bookViewModel.getBook();
+    listBook =  await widget._bookViewModel.getBook();
     Future.delayed(const Duration(microseconds: 500), (){
       setState(() {
         listBook = listBook;

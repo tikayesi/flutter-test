@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cc355152-537a-421f-a61c-57cda4d05ed1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_application_1/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/lib/model/to_do.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/lib/presentation/to_do_detail.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/lib/presentation/to_do_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/lib/repository/to_do_repo.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_application_1/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_application_1/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_application_1/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1yrnasvkNtvFkApgF8S3qb8RaN6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc355152-537a-421f-a61c-57cda4d05ed1" name="Default Changelist" comment="" />
+      <created>1633018641995</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633018641995</updated>
+      <workItem from="1633018643899" duration="43000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
